@@ -35,8 +35,6 @@ check-clean: ## Verify working tree is clean
 
 release: check-clean archive ## Tag, commit, and create GitHub release
 	@echo "🚀 Creating release v$(VERSION)"
-	@git add VERSION
-	@git commit -m "Release v$(VERSION)" || true  # Allow if nothing changed
 	@git tag -a v$(VERSION) -m "Release v$(VERSION)" 2>/dev/null || echo "ℹ️  Tag v$(VERSION) already exists"
 	@git push origin main
 	@git push origin v$(VERSION) 2>/dev/null || true
