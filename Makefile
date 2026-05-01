@@ -35,18 +35,25 @@ check-clean: ## Verify working tree is clean
 
 release: check-clean archive ## Tag, commit, and create GitHub release
 	@echo "🚀 Creating release v$(VERSION)"
+	@git add VERSION
+	@git commit -m "Release v$(VERSION)" || true
 	@git tag -a v$(VERSION) -m "Release v$(VERSION)" 2>/dev/null || echo "ℹ️  Tag v$(VERSION) already exists"
 	@git push origin main
 	@git push origin v$(VERSION) 2>/dev/null || true
 	@if command -v gh &> /dev/null; then \
+		if gh release view v$(VERSION) >/dev/null 2>&1; then \
+			echo "Release v$(VERSION) exists, deleting and recreating..."; \
+			gh release delete v$(VERSION) --yes; \
+		fi; \
 		gh release create v$(VERSION) $(TARBALL) \
 			--title "Release v$(VERSION)" \
-		gh release upload v$(VERSION) $(TARBALL) --clobber; \
+			--generate-notes; \
 	else \
 		echo "⚠️  GitHub CLI not installed. Skipping GitHub release."; \
 	fi
 	@echo "✅ Release v$(VERSION) complete!"
 
 clean: ## Remove build artifacts
-	rm -r $(TARBALL) $(SO_NAME) $(YML_FILE) .falcon 
+	rm -f $(TARBALL) $(SO_NAME) $(YML_FILE) 
+	rm -rf .falcon
 	@echo "✓ Clean complete"
