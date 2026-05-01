@@ -44,8 +44,7 @@ release: check-clean archive ## Tag, commit, and create GitHub release
 			gh release delete v$(VERSION) --yes; \
 		fi; \
 		gh release create v$(VERSION) $(TARBALL) \
-			--title "Release v$(VERSION)" \
-			--generate-notes; \
+			--title "Release v$(VERSION)"; \
 	else \
 		echo "⚠️  GitHub CLI not installed. Skipping GitHub release."; \
 	fi
