@@ -1,4 +1,4 @@
-# falcon/testing
+# testing
 
 A native Falcon testing library providing a fixture-aware, gtest-style test harness for writing and running tests entirely within the Falcon DSL. It binds a C++ backend via the FFI and is driven by the `falcon-test` CLI.
 
@@ -51,29 +51,6 @@ Users see none of this machinery.
 ---
 
 ## Writing a test file
-
-### Minimal test (no fixture)
-
-```fal
-import "/opt/falcon/libs/testing/testing.fal";
-
-autotuner MathTests -> (int passed, int failed) {
-    passed = 0; failed = 0;
-    start -> __init;           // required entry point
-
-    state test_addition (TestRunner runner, TestContext t) {
-        Error err = t.ExpectIntEq(2 + 2, 4, "2+2=4");
-        -> __end(runner, t);   // hand back to the harness
-    }
-
-    state test_subtraction (TestRunner runner, TestContext t) {
-        Error err = t.ExpectIntEq(10 - 3, 7, "10-3=7");
-        -> __end(runner, t);
-    }
-}
-```
-
-That is the complete file. No registration. No dispatch table. No loop logic.
 
 ### With setup and teardown
 
@@ -283,7 +260,7 @@ dependencies:
 Then import in your `.fal` file:
 
 ```fal
-import "/opt/falcon/libs/testing/testing.fal";
+import "https://github.com/falcon-autotuning/testing";
 ```
 
 ---
