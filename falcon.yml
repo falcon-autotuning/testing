@@ -2,8 +2,8 @@ name: testing
 version: 1.0.0
 maintainer: falcon-devs
 github: falcon-autotuning/falcon-lib
-license: ""
+license: MPL-2.0
 ffi:
-  testing-wrapper.so: sha256:876c97754d25dfec4c57c95d9918ab340a6afa702cb3cf388cc56de960da4592
-dependencies:
-  []
+  testing-wrapper.so: sha256:632abc80bd9166b74be23e9e4808d160b2e5574ebbb7edb4a6b75d354c0f25d9
+dependencies: []
+

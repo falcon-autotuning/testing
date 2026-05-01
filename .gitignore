@@ -1,0 +1,3 @@
+falcon.yml
+*.so
+.falcon/
