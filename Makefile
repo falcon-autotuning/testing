@@ -41,7 +41,6 @@ release: check-clean archive ## Tag, commit, and create GitHub release
 	@if command -v gh &> /dev/null; then \
 		gh release create v$(VERSION) $(TARBALL) \
 			--title "Release v$(VERSION)" \
-			--generate-notes 2>/dev/null || \
 		gh release upload v$(VERSION) $(TARBALL) --clobber; \
 	else \
 		echo "⚠️  GitHub CLI not installed. Skipping GitHub release."; \
