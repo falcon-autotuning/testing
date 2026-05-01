@@ -51,6 +51,6 @@ release: check-clean archive ## Tag, commit, and create GitHub release
 	@echo "✅ Release v$(VERSION) complete!"
 
 clean: ## Remove build artifacts
-	rm -f $(TARBALL) $(SO_NAME) $(YML_FILE) 
+	rm -f $(TARBALL) $(SO_NAME) 
 	rm -rf .falcon
 	@echo "✓ Clean complete"
